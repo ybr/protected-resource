@@ -1,4 +1,4 @@
-package com.ybrdx.protect
+package com.github.ybr.protectr
 
 object BooleanTypeOps {
   type ![A] = A => Nothing
