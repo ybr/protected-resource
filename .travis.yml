@@ -1,0 +1,25 @@
+language: scala
+scala:
+  - 2.11.7
+  - 2.10.6
+jdk:
+  - openjdk7
+script:
+  - sbt test doc
+services: []
+deploy:
+  # upload documentation to a S3 bucket
+  provider: s3
+  region: eu-west-1
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
+  bucket: $AWS_BUCKET
+  skip_cleanup: true
+  local_dir: $TRAVIS_BUILD_DIR/target/scala-2.11/api
+  upload-dir: api/nightly
+  on:
+    branch: master
+
+notifications:
+  email:
+    - yohann.bredoux@gmail.com
